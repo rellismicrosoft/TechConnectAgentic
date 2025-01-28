@@ -1,0 +1,41 @@
+# Azure SDKs
+azure-mgmt-apimanagement
+azure-mgmt-cognitiveservices
+azure-mgmt-resource
+azure-identity
+azure-storage-blob
+openai
+msgraph-sdk
+msgraph-core
+azure-graphrbac
+
+# General-purpose libraries
+requests
+numpy
+pytest
+python-dotenv
+ruff
+pre-commit
+pytest-asyncio
+pytest-snapshot
+pytest-cov
+pip-Tools
+
+# Web Framework and Utilities
+flask
+jinja2
+gunicorn
+
+# Development Tools
+pylint
+black
+
+# Langgraph
+langgraph 
+langsmith 
+langchain_anthropic
+langchain_openai
+IPython
+anthropic
+tavily-python
+langchain_community
