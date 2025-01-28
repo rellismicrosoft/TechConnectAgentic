@@ -15,7 +15,7 @@ az login --service-principal -u $AZURE_APP_ID -p $AZURE_APP_PASSWORD --tenant $A
 az account set --subscription $AZURE_SUBSCRIPTION_ID
 
 # --------- Verify SDK Authentication --------- #
-python /workspaces/agenticdemo/verifyauth.py
+python /workspaces/TechConnectAgentic/verifyauth.py
 
 # --------- Build Source --------- #
 pip install -e src

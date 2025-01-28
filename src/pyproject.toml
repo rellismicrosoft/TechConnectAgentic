@@ -1,0 +1,25 @@
+[project]
+name = "quartapp"
+version = "1.0.0"
+description = "Agentic AI Demo using Quart, OpenAI, Langraph, and M365 copilot"
+dependencies = [
+    "quart",
+    "werkzeug",
+    "gunicorn",
+    "uvicorn[standard]",
+    "openai",
+    "azure-identity",
+    "aiohttp",
+    "python-dotenv",
+    "pyyaml",
+    "langgraph",
+    "langchain-openai",
+    "msal",
+    "msal_extensions",
+    "msgraph-core",
+    "requests"
+    ]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
