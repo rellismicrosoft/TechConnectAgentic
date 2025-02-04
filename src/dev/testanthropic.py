@@ -1,5 +1,5 @@
 import getpass
-import osWhat a
+import os
 
 def _set_env(var: str):
     if not os.environ.get(var):
