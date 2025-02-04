@@ -30,7 +30,7 @@ tool = TavilySearchResults(max_results=2)
 tools = [tool]
 
 llm = AzureChatOpenAI(
-    azure_deployment="gpt-4o",  # or your deployment
+    azure_deployment="gpt-4o-2024-08-06",  # or your deployment
     api_version="2024-08-01-preview",  # or your api version
     temperature=0,
     max_tokens=None,
@@ -51,9 +51,6 @@ def chatbot(state: State):
 # the node is used.
 graph_builder.add_node("chatbot", chatbot)
 
-tool_node = ToolNode(tools=[tool])
-
-graph_builder.add_node("tools", tool_node)
 tool_node = ToolNode(tools=[tool])
 graph_builder.add_node("tools", tool_node)
 
