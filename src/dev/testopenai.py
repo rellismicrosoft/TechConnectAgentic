@@ -25,7 +25,7 @@ graph_builder = StateGraph(State)
 from langchain_openai import AzureChatOpenAI
 
 llm = AzureChatOpenAI(
-    azure_deployment="gpt-4o",  # or your deployment
+    azure_deployment="gpt-4o-2024-08-06",  # or your deployment
     api_version="2024-08-01-preview",  # or your api version
     temperature=0,
     max_tokens=None,
