@@ -42,8 +42,7 @@ llm_with_tools = llm.bind_tools(tools)
 
 # chatbot node
 def chatbot(state: State):
-    return {"messages": [llm.invoke(state["messages"])]}
-    # return {"messages": [llm_with_tools.invoke(state["messages"])]}
+    return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
 
 # The first argument is the unique node name
@@ -62,9 +61,6 @@ graph_builder.add_conditional_edges(
 graph_builder.add_edge("tools", "chatbot")
 graph_builder.set_entry_point("chatbot")
 graph = graph_builder.compile(checkpointer=memory)
-# graph_builder.add_edge(START, "chatbot")
-
-# graph_builder.add_edge("chatbot", END)
 
 graph = graph_builder.compile()
 def stream_graph_updates(user_input: str):
