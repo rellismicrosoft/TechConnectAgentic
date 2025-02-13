@@ -19,7 +19,7 @@ _set_env("OPENAI_API_KEY")
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
-memory = MemorySaver() # allows you to save state
+memory = MemorySaver() # allows you to save state, currently in memory only. Other Options: SqliteSaver, PostgresSaver
 
 graph_builder = StateGraph(State)
 
@@ -47,12 +47,12 @@ def chatbot(state: State):
 # the node is used.
 graph_builder.add_node("chatbot", chatbot)
 
-tool_node = ToolNode(tools=[tool])
+tool_node = ToolNode(tools=[tool]) # Replaces BasicTooLNode
 graph_builder.add_node("tools", tool_node)
 
 graph_builder.add_conditional_edges(
     "chatbot",
-    tools_condition,
+    tools_condition, # replaces route_tools, allows for paralell API execution and other builtin capabilities
 )
 
 graph_builder.add_edge("tools", "chatbot")
