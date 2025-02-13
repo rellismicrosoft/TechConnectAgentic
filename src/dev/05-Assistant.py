@@ -19,7 +19,7 @@ _set_env("OPENAI_API_KEY")
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
-memory = MemorySaver()
+memory = MemorySaver() # allows you to save state
 
 graph_builder = StateGraph(State)
 
@@ -57,7 +57,7 @@ graph_builder.add_conditional_edges(
 
 graph_builder.add_edge("tools", "chatbot")
 graph_builder.set_entry_point("chatbot")
-graph = graph_builder.compile(checkpointer=memory)
+graph = graph_builder.compile(checkpointer=memory) # memory persistance
 
 graph = graph_builder.compile()
 def stream_graph_updates(user_input: str):
