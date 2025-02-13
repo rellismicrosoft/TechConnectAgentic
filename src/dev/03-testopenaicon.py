@@ -1,20 +1,16 @@
 import getpass
 import os
+from typing import Annotated
+from typing_extensions import TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_openai import AzureChatOpenAI
 
 def _set_env(var: str):
     if not os.environ.get(var):
         os.environ[var] = getpass.getpass(f"{var}: ")
 
-
 _set_env("OPENAI_API_KEY")
-
-from typing import Annotated
-
-from typing_extensions import TypedDict
-
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
-
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -22,10 +18,9 @@ class State(TypedDict):
 
 graph_builder = StateGraph(State)
 
-from langchain_openai import AzureChatOpenAI
 
 llm = AzureChatOpenAI(
-    azure_deployment="gpt-4o",  # or your deployment
+    azure_deployment="gpt-4o-2024-08-06",  # or your deployment
     api_version="2024-08-01-preview",  # or your api version
     temperature=0,
     max_tokens=None,

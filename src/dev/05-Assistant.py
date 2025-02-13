@@ -1,5 +1,13 @@
 import getpass
 import os
+from typing_extensions import TypedDict
+from langchain_community.tools.tavily_search import TavilySearchResults
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.prebuilt import ToolNode, tools_condition
+from langchain_openai import AzureChatOpenAI
+from typing import Annotated
 
 def _set_env(var: str):
     if not os.environ.get(var):
@@ -8,23 +16,12 @@ def _set_env(var: str):
 _set_env("TAVILY_API_KEY")
 _set_env("OPENAI_API_KEY")
 
-from typing import Annotated
-
-from typing_extensions import TypedDict
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
-from langgraph.checkpoint.memory import MemorySaver
-from langgraph.prebuilt import ToolNode, tools_condition
-
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 memory = MemorySaver()
 
 graph_builder = StateGraph(State)
-
-from langchain_openai import AzureChatOpenAI
 
 tool = TavilySearchResults(max_results=2)
 tools = [tool]

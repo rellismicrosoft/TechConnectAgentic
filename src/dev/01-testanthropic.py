@@ -1,5 +1,10 @@
 import getpass
 import os
+from typing import Annotated
+from typing_extensions import TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_anthropic import ChatAnthropic
 
 def _set_env(var: str):
     if not os.environ.get(var):
@@ -8,21 +13,12 @@ def _set_env(var: str):
 
 _set_env("ANTHROPIC_API_KEY")
 
-from typing import Annotated
-
-from typing_extensions import TypedDict
-
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
-
-
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
 graph_builder = StateGraph(State)
 
-from langchain_anthropic import ChatAnthropic
 
 llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 
